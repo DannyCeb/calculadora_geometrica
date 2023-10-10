@@ -1,9 +1,10 @@
 
-
+use core::fmt::Display;
+use std::fmt;
 // ==========================================================================
 //                        Traits
 //===========================================================================
-trait FuncionesGeometricas {
+trait FuncionesGeometricas: Display{
     fn calcular_area(&self) -> f64;
     fn calcular_perimetro(&self) -> f64;
 }
@@ -13,9 +14,11 @@ trait FuncionesGeometricas {
 // ==========================================================================
 //                        Structs
 //===========================================================================
+
 struct Cuadrado {
     lado: f64,
 }
+
 
 struct Triangulo {
     base: f64,
@@ -24,10 +27,13 @@ struct Triangulo {
     altura: f64
 }
 
+
 struct Circulo {
     radio: f64
 }
-struct Calculadora {}
+struct Calculadora {
+    figuras: Vec<Box<dyn FuncionesGeometricas>>
+}
 
 // ==========================================================================
 //                          Enums
@@ -59,6 +65,12 @@ impl FuncionesGeometricas for Cuadrado{
     }
 }
 
+impl Display for Cuadrado {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Cuadrado: (lado: {})", self.lado)
+    }
+}
+
 
 impl Triangulo {
     fn new(base: f64, lado1: f64, lado2: f64, altura: f64) -> Triangulo{
@@ -77,6 +89,12 @@ impl FuncionesGeometricas for Triangulo {
 
 }
 
+impl Display for Triangulo {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Triangulo: (Base: {}, Altura: {}, Lado1: {}, Lado2: {})", self.base, self.altura, self.lado1, self.lado2)
+    }
+}
+
 impl Circulo {
     fn new(radio: f64) -> Circulo{ Circulo { radio } }
 }
@@ -93,6 +111,26 @@ impl FuncionesGeometricas for Circulo {
 
 }
 
+impl Display for Circulo {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Circulo: (Radio: {})", self.radio)
+    }
+}
+
+impl Calculadora {
+    fn new() -> Calculadora{
+        Calculadora { figuras: vec![] }
+    }
+}
+
+impl Calculadora {
+    fn mostrar_figuras(&self) {
+        for l in 0..self.figuras.len() {
+            println!("Figura {}: {}",l, &self.figuras[l]);
+        }
+    }
+}
+
 
 // ==========================================================================
 //                       Main
@@ -100,4 +138,13 @@ impl FuncionesGeometricas for Circulo {
 
 fn main() {
     println!("Hello 🌍!");
+
+    let mut prueba = Calculadora::new();
+
+    prueba.figuras.push( Box::new( Circulo::new( 23.1 ) ) );
+
+    prueba.figuras.push( Box::new( Cuadrado::new(24.5) ) );
+
+    prueba.mostrar_figuras();
+
 }
