@@ -36,17 +36,6 @@ struct Calculadora {
 }
 
 // ==========================================================================
-//                          Enums
-//===========================================================================
-
-enum FiguraGeometrica {
-    Cuadrado( Cuadrado ),
-    Triangulo ( Triangulo ),
-    Circulo ( Circulo )
-}
-
-
-// ==========================================================================
 //                        Implementaciones
 //===========================================================================
 
@@ -139,7 +128,7 @@ impl Calculadora {
 fn main() {
     println!("Hello 🌍!");
 
-    let mut prueba = Calculadora::new();
+    let mut prueba: Calculadora = Calculadora::new();
 
     prueba.figuras.push( Box::new( Circulo::new( 23.1 ) ) );
 
