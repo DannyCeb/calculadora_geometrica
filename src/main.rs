@@ -125,8 +125,8 @@ impl Calculadora {
 
 impl Calculadora {
     fn mostrar_figuras(&self) {
-        for l in 0..self.figuras.len() {
-            println!("Figura {}: {}",l, &self.figuras[l]);
+        for (i, v) in self.figuras.iter().enumerate() {
+            println!("Figura {}: {}",i,v );
         }
     }
 }
@@ -146,5 +146,6 @@ fn main() {
     prueba.figuras.push( Box::new( Cuadrado::new(24.5) ) );
 
     prueba.mostrar_figuras();
+
 
 }
