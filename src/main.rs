@@ -118,6 +118,13 @@ impl Calculadora {
             println!("Figura {}: {}",i,v );
         }
     }
+
+    fn obtener_area(&self, indice: usize) -> Option<f64>{
+        match self.figuras.get(indice) {
+            Some(figura) => Some(figura.calcular_area()) ,
+            None => None
+        }
+    }
 }
 
 
@@ -135,6 +142,9 @@ fn main() {
     prueba.figuras.push( Box::new( Cuadrado::new(24.5) ) );
 
     prueba.mostrar_figuras();
+
+    println!("{:?}", prueba.obtener_area(1));
+    println!("{:?}", prueba.obtener_area(2));
 
 
 }
