@@ -141,10 +141,14 @@ fn main() {
 
     prueba.figuras.push( Box::new( Cuadrado::new(24.5) ) );
 
+    prueba.figuras.push( Box::new( Triangulo::new(23.0,32.0,56.0,78.0) ) );
+
     prueba.mostrar_figuras();
 
+    println!("{:?}", prueba.obtener_area(0));
     println!("{:?}", prueba.obtener_area(1));
     println!("{:?}", prueba.obtener_area(2));
+    print!("{}",prueba.figuras[2].calcular_area()); // Modo no seguro 
 
 
 }
