@@ -39,7 +39,7 @@ struct Calculadora {
 //                        Implementaciones
 //===========================================================================
 
-
+// ==================  Cuadrado ============================
 impl Cuadrado {
     fn new(lado: f64) -> Cuadrado { Cuadrado { lado } }
 }
@@ -61,6 +61,7 @@ impl Display for Cuadrado {
 }
 
 
+// ==================  Triangulo  ============================
 impl Triangulo {
     fn new(base: f64, lado1: f64, lado2: f64, altura: f64) -> Triangulo{
         Triangulo { base, lado1, lado2, altura}
@@ -84,6 +85,21 @@ impl Display for Triangulo {
     }
 }
 
+impl From <(f64, f64, f64, f64)> for Triangulo {
+    
+    fn from(v:(f64, f64, f64, f64) ) -> Triangulo {
+        Triangulo {
+            base: v.0,
+            lado1: v.1,
+            lado2: v.2,
+            altura: v.3
+        }
+    }
+    
+}
+
+// ==================  Circulo ============================
+
 impl Circulo {
     fn new(radio: f64) -> Circulo{ Circulo { radio } }
 }
@@ -105,6 +121,8 @@ impl Display for Circulo {
         write!(f, "Circulo: (Radio: {})", self.radio)
     }
 }
+
+// ==================  Calculadora ============================
 
 impl Calculadora {
     fn new() -> Calculadora{
@@ -142,13 +160,16 @@ fn main() {
     prueba.figuras.push( Box::new( Cuadrado::new(24.5) ) );
 
     prueba.figuras.push( Box::new( Triangulo::new(23.0,32.0,56.0,78.0) ) );
+    
+    prueba.figuras.push( Box::new( Triangulo::from(( 23.0,32.0,56.0,78.0 )) ) );
 
     prueba.mostrar_figuras();
 
     println!("{:?}", prueba.obtener_area(0));
     println!("{:?}", prueba.obtener_area(1));
     println!("{:?}", prueba.obtener_area(2));
-    print!("{}",prueba.figuras[2].calcular_area()); // Modo no seguro 
+    println!("{}", prueba.figuras[2].calcular_area()); // Modo no seguro 
+    println!("{:?}", prueba.obtener_area(3));
 
 
 }
