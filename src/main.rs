@@ -1,6 +1,6 @@
-use calculadora_geometrica::calculadora::Calculadora;
-use calculadora_geometrica::figuras::circulo::Circulo;
-use calculadora_geometrica::figuras::cuadrado::Cuadrado;
-use calculadora_geometrica::figuras::triangulo::Triangulo;
+use calculadora_geometrica::{
+    calculadora::Calculadora,
+    figuras::{circulo::Circulo, cuadrado::Cuadrado, triangulo::Triangulo},
+};
 
 fn main() {}

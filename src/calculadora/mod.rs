@@ -11,9 +11,12 @@ impl Calculadora {
 
 impl Calculadora {
     pub fn mostrar_figuras(&self) {
-        for (i, v) in self.figuras.iter().enumerate() {
-            println!("Figura {}: {}", i, v);
-        }
+        self.figuras
+            .iter()
+            .enumerate()
+            .for_each(|(indice, figura)| {
+                println!("Figura {}: {}", indice, figura);
+            })
     }
 
     pub fn obtener_area(&self, indice: usize) -> Option<f64> {
